@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 
 import { CallToActionCard } from '@grafana/ui';
 import EmptyListCTA from 'app/core/components/EmptyListCTA/EmptyListCTA';
+import { t } from 'app/core/internationalization';
 import { DashboardViewItem } from 'app/features/search/types';
 import { useDispatch } from 'app/types';
 
@@ -118,9 +119,13 @@ export function BrowseView({ folderUID, width, height, canSelect }: BrowseViewPr
       <div style={{ width }}>
         {canSelect ? (
           <EmptyListCTA
-            title={folderUID ? "This folder doesn't have any dashboards yet" : 'No dashboards yet. Create your first!'}
+            title={
+              folderUID
+                ? t('nav.dashboards.infoPanel', "This folder doesn't have any dashboards yet")
+                : t('nav.dashboards.infoFolder', 'No dashboards yet. Create your first!')
+            }
             buttonIcon="plus"
-            buttonTitle="Create Dashboard"
+            buttonTitle={t('nav.dashboards.buttonLabel', 'Create Dashboard')}
             buttonLink={folderUID ? `dashboard/new?folderUid=${folderUID}` : 'dashboard/new'}
             proTip={folderUID && 'Add/move dashboards to your folder at ->'}
             proTipLink={folderUID && 'dashboards'}
